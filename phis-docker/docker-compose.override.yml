@@ -4,17 +4,17 @@ services:
       build:
          args:
             PSQL_DUMP_DOWNLOAD_LINK: https://raw.githubusercontent.com/OpenSILEX/docs-community-dev/master/docs/assets/opensilex_st_dump.sql
-   phis-webapp:
-      build:
-         args:
-            VERSION: 3.2.5
-            PHIS_WEBAPP_PLATFORM: opensilex
-      environment:
-         - PHIS_WS_URL=http://phis-ws:8080/opensilex
-         - PHIS_WS_DOC_URL=http://localhost:8889/opensilex
-         - PHIS_WEBAPP_NAME=OpenSILEX
-         - PHIS_WEBAPP_PLATFORM=opensilex
-         - PHIS_WEBAPP_HOST=localhost
+   # phis-webapp:
+   #    build:
+   #       args:
+   #          VERSION: 3.2.5
+   #          PHIS_WEBAPP_PLATFORM: opensilex
+   #    environment:
+   #       - PHIS_WS_URL=http://phis-ws:8080/opensilex
+   #       - PHIS_WS_DOC_URL=http://localhost:8889/opensilex
+   #       - PHIS_WEBAPP_NAME=OpenSILEX
+   #       - PHIS_WEBAPP_PLATFORM=opensilex
+   #       - PHIS_WEBAPP_HOST=localhost
    phis-ws:
       build:
          args:
