@@ -3,13 +3,13 @@ version: "3.5"
 services:
    mongodb:
       container_name: mongodb
-      image: 'bitnami/mongodb:4.0'
+      build: ./mongodb
       networks:
          - backend
       labels:
          kompose.service.type: nodeport
       ports:
-         - "27017:27017"
+         - "27017"
       volumes:
          - mongodb_data:/bitnami
       healthcheck:
@@ -88,28 +88,28 @@ services:
          timeout: 5s
          retries: 5
 
-   phis-webapp:
-      container_name: phis-webapp
-      build: ./phis-webapp
-      networks:
-         - backend
-         - frontend
-      ports:
-         - "8888:80"
-      volumes:
-         - web_data:/var/www/html/
-      environment:
-         - PHIS_WS_URL=http://phis-ws:8080/phis2ws
-         - PHIS_WEBAPP_HOST=localhost
-         - PHIS_WEBAPP_PORT=8888
-         - PHIS_WEBAPP_NAME=PHIS
-      depends_on:
-         - phis-ws
-      healthcheck:
-         test: ["CMD-SHELL", "curl 127.0.0.1 || exit 1"]
-         interval: 10s
-         timeout: 5s
-         retries: 5
+   # phis-webapp:
+   #    container_name: phis-webapp
+   #    build: ./phis-webapp
+   #    networks:
+   #       - backend
+   #       - frontend
+   #    ports:
+   #       - "8888:80"
+   #    volumes:
+   #       - web_data:/var/www/html/
+   #    environment:
+   #       - PHIS_WS_URL=http://phis-ws:8080/phis2ws
+   #       - PHIS_WEBAPP_HOST=localhost
+   #       - PHIS_WEBAPP_PORT=8888
+   #       - PHIS_WEBAPP_NAME=PHIS
+   #    depends_on:
+   #       - phis-ws
+   #    healthcheck:
+   #       test: ["CMD-SHELL", "curl 127.0.0.1 || exit 1"]
+   #       interval: 10s
+   #       timeout: 5s
+   #       retries: 5
 
 networks:
    frontend:
@@ -119,6 +119,6 @@ volumes:
    postgresql_data:
    mongodb_data:
    rdf4j_data:
-   web_data:
+   # web_data:
    ws_docs:
    ws_logs:
